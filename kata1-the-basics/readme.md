@@ -114,13 +114,31 @@ Challenge: Are there any customers with the same last name?
 
 ## Step7: Functions
 
-What is the average rental rate of films?  Can you round the result to 2 decimal places?
+What is the average rental rate of films?
+    SELECT AVG(rental_rate)FROM film;
+
+
+Can you round the result to 2 decimal places?
+    SELECT ROUND(AVG(rental_rate),2)FROM film;
 
 Challenge: What is the average time that people have rentals before returning?  Hint: the output you'll get may include a number of hours > 24.  You can use the function `justify_interval` on the result to get output that looks more like you might expect.
+
+    
 
 Challenge 2: Select the 10 actors who have the longest names (first and last name combined).
 
 ### Step8: Count, Group, and Order
 
-Which film (id) has the most actors?  Which actor (id) is in the most films?
+Which film (id) has the most actors?  
+
+    SELECT film_id, count(*) FROM film_actor group by film_id order by count desc limit 1 ;
+
+
+Which actor (id) is in the most films?
+
+    SELECT actor_id, count(*) FROM film_actor group by actor_id order by count desc limit 1 ;
+
+
+
+    
 
