@@ -81,6 +81,7 @@ What are the different rental durations that the store allows?
 
     SELECT DISTINCT rental_duration FROM film;
 
+
 ### Step4: Order By
 
 What are the IDs of the last 3 customers to return a rental?
@@ -105,12 +106,14 @@ Challenge: How many different customers have entries in the rental table?  [Hint
 
 ### Step6: Group By
 
-Does the average replacement cost of a film differ by rating?
+Does the average replacement cost of a film differ by rating?yes
 
-    
+    select rating, avg(replacement_cost) as average_replacement_cost from film group by rating;  
 
 
-Challenge: Are there any customers with the same last name?
+Challenge: Are there any customers with the same last name?NO
+select last_name, count(*) from customer group by last_name HAVING count(*) > 1;
+
 
 ## Step7: Functions
 
@@ -123,9 +126,13 @@ Can you round the result to 2 decimal places?
 
 Challenge: What is the average time that people have rentals before returning?  Hint: the output you'll get may include a number of hours > 24.  You can use the function `justify_interval` on the result to get output that looks more like you might expect.
 
+    SELECT AVG(return_date - rental_date) as average_time from rental;  
     
 
 Challenge 2: Select the 10 actors who have the longest names (first and last name combined).
+
+    select first_name ||''|| last_name as actor_name, length(first_name ||''|| last_name) as name_length from actor order by name_length DESC LIMIT 10;
+
 
 ### Step8: Count, Group, and Order
 
